@@ -84,7 +84,7 @@ export class InactivityTimerService {
 
   /**
    * Starts listening for activity.
-   * @param  {} activate=false. If true will reset the activity timer as any other activity.
+   * @param activate=false. If true will reset the activity timer as any other activity.
    * @returns void
    */
   public startMonitor(activate = false): void {
