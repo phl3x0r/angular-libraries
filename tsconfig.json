@@ -22,6 +22,9 @@
       ],
       "foolazoor": [
         "dist/foolazoor"
+      ],
+      "ng-inactivity-timer": [
+        "dist/ng-inactivity-timer"
       ]
     }
   }
