@@ -8,7 +8,7 @@ import {
   merge
 } from 'rxjs';
 import { ActivityMonitor } from './activity-monitor.interface';
-import { ACTIVITY_MONITORS } from './activity-monitor.token';
+import { ACTIVITY_MONITOR } from './activity-monitor.token';
 import { InactivityConfig } from './inactivity-config.interface';
 import { INACTIVITY_CONFIG } from './inactivity-config.token';
 import { Inject, Injectable, Optional } from '@angular/core';
@@ -22,7 +22,8 @@ import {
 } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
+  deps: [INACTIVITY_CONFIG, ACTIVITY_MONITOR]
 })
 export class InactivityTimerService {
   private timeout$: Observable<Date | never>;
@@ -32,20 +33,14 @@ export class InactivityTimerService {
   constructor(
     @Inject(INACTIVITY_CONFIG) private config: InactivityConfig,
     @Optional()
-    @Inject(ACTIVITY_MONITORS)
-    private monitors: ActivityMonitor[]
+    @Inject(ACTIVITY_MONITOR)
+    private monitor: ActivityMonitor
   ) {
-    if (this.monitors === null) {
-      this.monitors = [];
-    }
     // Merge all monitors together, and activate them via register()
     this.timeout$ = this.monitor$.pipe(
       filter(x => !!x),
       switchMap(m => {
-        return merge(
-          ...this.monitors.filter(a => a).map(a => a.getMonitor()),
-          this.artificialActivity$
-        ).pipe(
+        return merge(this.monitor.getMonitor(), this.artificialActivity$).pipe(
           throttle(() => observableInterval(500)), // Throttle - to stop spamming
           startWith(undefined), // Trigger observable immediately
           map(() => {
