@@ -4,9 +4,6 @@
 
 ng-inactivity-timer provides a service that keeps track of user activity based on cusom activity monitors.
 
-Provide activity monitors implementing the _ActivityMonitor_ interface and add the service to the _ACTIVITY_MONITORS_ injection token list using `multi: true`
-_InactivityTimerService_ will keep track of user activity, and can be
-
 ## Installation
 
 Install the package by running

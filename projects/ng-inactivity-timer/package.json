@@ -1,6 +1,20 @@
 {
   "name": "ng-inactivity-timer",
-  "version": "0.0.1",
+  "version": "0.6.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/phl3x0r/angular-libraries"
+  },
+  "bugs": {
+    "email": "wispster@gmail.com",
+    "url": "https://github.com/phl3x0r/angular-libraries/issues"
+  },
+  "author": {
+    "name": "Niklas Hegnelt",
+    "email": "wispster@gmail.com",
+    "url": "https://github.com/phl3x0r"
+  },
+  "description": "A service for monitoring and reacting to user inactivity",
   "peerDependencies": {
     "@angular/core": "^6.0.0-rc.0 || ^6.0.0",
     "rxjs": "^6.0.0"
