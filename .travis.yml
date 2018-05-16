@@ -5,7 +5,10 @@ node_js:
 branches:
   only:
     - master
-
+    
+before_install:
+  - npm i -g npm@latest
+  
 script:
   - ng build ng-disposable -c production
   - ng build ng-inactivity-timer -c production
@@ -14,3 +17,7 @@ notifications:
   email:
     on_failure: change
     on_success: change
+    
+cache:
+  directories:
+    - "node_modules"
