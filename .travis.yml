@@ -8,10 +8,16 @@ branches:
     
 before_install:
   - npm i -g npm@latest
-  
-script:
-  - ng build ng-disposable -c production
-  - ng build ng-inactivity-timer -c production
+
+jobs:
+  include:
+    - stage: build
+      script: ng build ng-disposable -c production
+      script: ng-inactivity-timer -c production
+      
+# script:
+  # - ng build ng-disposable -c production
+  # - ng build ng-inactivity-timer -c production
 
 notifications:
   email:
