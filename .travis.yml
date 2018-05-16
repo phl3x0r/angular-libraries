@@ -1,0 +1,19 @@
+language: node_js
+node_js:
+  - "10.1"
+
+branches:
+  only:
+    - master
+
+before_script:
+  - npm install
+
+script:
+  - ng build ng-disposable -c production
+  - ng build ng-inactivity-timer -c production
+
+notifications:
+  email:
+    on_failure: change
+    on_success: change
