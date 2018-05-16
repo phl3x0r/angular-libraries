@@ -6,9 +6,6 @@ branches:
   only:
     - master
 
-before_script:
-  - npm install
-
 script:
   - ng build ng-disposable -c production
   - ng build ng-inactivity-timer -c production
