@@ -12,8 +12,8 @@ before_install:
 jobs:
   include:
     - stage: build
-      script: ng build ng-disposable -c production
-      script: ng build ng-inactivity-timer -c production
+    - script: ng build ng-disposable -c production
+    - script: ng build ng-inactivity-timer -c production
       
 # script:
   # - ng build ng-disposable -c production
