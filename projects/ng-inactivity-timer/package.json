@@ -15,6 +15,8 @@
     "url": "https://github.com/phl3x0r"
   },
   "description": "A service for monitoring and reacting to user inactivity",
+  "keywords": ["angular", "inactivity", "timer", "inactivity-timer", "timeout"],
+  "license": "MIT",
   "peerDependencies": {
     "@angular/core": "^6.0.0-rc.0 || ^6.0.0",
     "rxjs": "^6.0.0"
