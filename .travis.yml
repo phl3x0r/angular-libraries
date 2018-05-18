@@ -12,6 +12,20 @@ before_install:
 script:
   - ng build $PROJECT -c production
 
+before_deploy:
+  - cd dist/$PROJECT
+  
+deploy:
+  provider: npm
+  email: wispster@gmail.com
+  skip_cleanup: true
+  api_key:
+    secure: ##your_secure_key
+  on:
+    branch: master
+    tags: true
+    condition: echo "$TRAVIS_TAG" | grep -q "$PROJECT"
+
 env:
   - PROJECT=ng-disposable
   - PROJECT=ng-inactivity-timer
