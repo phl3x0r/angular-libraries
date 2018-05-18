@@ -10,8 +10,11 @@ before_install:
   - npm i -g npm@latest
       
 script:
-  - ng build ng-disposable -c production
-  - ng build ng-inactivity-timer -c production
+  - ng build $PROJECT -c production
+
+env:
+  - PROJECT=ng-disposable
+  - PROJECT=ng-inactivity-timer
 
 notifications:
   email:
