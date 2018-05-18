@@ -12,6 +12,9 @@ before_install:
 script:
   - ng build $PROJECT -c production
 
+after_success:
+  - echo "$TRAVIS_BUILD_DIR"
+
 before_deploy:
   - cd dist/$PROJECT
   
