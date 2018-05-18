@@ -27,11 +27,14 @@ deploy:
   on:
     branch: master
     tags: true
-    condition: echo "$TRAVIS_TAG" | grep -q "$PROJECT"
+    condition: "$PROJECT = $DEPLOY"
 
 env:
-  - PROJECT=ng-disposable
-  - PROJECT=ng-inactivity-timer
+  global:
+    - DEPLOY=$(echo "$TRAVIS_TAG" | grep "$PROJECT")
+  matrix:
+    - PROJECT=ng-disposable
+    - PROJECT=ng-inactivity-timer
 
 notifications:
   email:
