@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
-import { NgxCarouselModule } from 'ngx-carousel';
 import 'hammerjs';
 
 import { GalleryRoutingModule } from './gallery-routing.module';
@@ -13,7 +12,7 @@ import { ChildComponent } from './theming/child/child.component';
 import { SharedModule } from '../shared';
 
 @NgModule({
-  imports: [SharedModule, GalleryRoutingModule, NgxCarouselModule],
+  imports: [SharedModule, GalleryRoutingModule],
   declarations: [
     ParentComponent,
     ChildComponent,
