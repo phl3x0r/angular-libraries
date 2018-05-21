@@ -1,46 +1,41 @@
 language: node_js
 node_js:
-  - "10.1"
-
+- '10.1'
 branches:
   only:
-    - master
-    
+  - master
 before_install:
-  - npm i -g npm@latest
-      
+- npm i -g npm@latest
 script:
-  - ng build $PROJECT -c production
-
+- ng build $PROJECT -c production
 after_success:
-  - echo "$TRAVIS_BUILD_DIR"
-
+- echo "$TRAVIS_BUILD_DIR"
 before_deploy:
-  - cd dist/$PROJECT
-  
+- cd dist/$PROJECT
 deploy:
   provider: npm
   email: wispster@gmail.com
   skip_cleanup: true
   api_key:
-    secure: ##your_secure_key
+    secure: 
   on:
     branch: master
     tags: true
     condition: "$PROJECT = $DEPLOY"
-
 env:
   global:
-    - DEPLOY=$(echo "$TRAVIS_TAG" | grep "$PROJECT")
+  - DEPLOY=$(echo "$TRAVIS_TAG" | grep "$PROJECT")
   matrix:
-    - PROJECT=ng-disposable
-    - PROJECT=ng-inactivity-timer
-
+  - PROJECT=ng-disposable
+  - PROJECT=ng-inactivity-timer
 notifications:
   email:
     on_failure: change
     on_success: change
-    
 cache:
   directories:
-    - "node_modules"
+  - node_modules
+'':
+  travis:
+    yml:
+      secure: FsBy15q7W9zTwTUIYSn8LTuZI3McBeHZvSCqRRIrVVyNMWTM3mlKFxdOEU95hGbQbTQsaBcfNo3RVbdDg1joq0ja0LHiBWHQHZh8xFkdEElz97mrW31GfIzgaDMSA2rUW2DbBkbaVQd3qc6sPweZ+BPiO8gDaBlfx04r1Z4TJCp47o//nWrqcNrylUtYaRlXlagQ61HD15tY2H6zbqyE4Yzyj3SOrpxJSjgRI/WuRJM3tr9YyU8cH4sSPeOd7AX2XNIB+Flw35xtfokMI8rNGTLyvNEtjLPZNGhTyJB5iKJ4yebWRkjQzjnYALmO8SIghJN3mINepnqRheyRIrmwL8upHHzsXehtg4zmbb63iu23EhHMA+AM+45K6yNmAL1YAUfbrbYFQ7c81yCLe2+Mjp37kXNMoEa8DnKOVdAZoFeyc/L3Q2oSbBwxRKUPY+eXhAXqeqExbIcJLEcf7e8rkYwLTts09/cHQ8GQD1WyEbYnKuscEtT5JD51TWJAarLa62ydd3yVUrkt7BlpxQMdi+wN2yNWt5e7TxGQ+u5J1w1ksUtfC/zM9iHLEbZSo4OobQk/8U4Q+dHe5F8nO6Im3Rij4s8lEu0hwAddX8ruJ70XTCPBWmODBzuZ9ZyCU05rXkXWM6VuXOeIOjCnIyZbKAGqALVAUo3fqCCyYQ73fSk=
