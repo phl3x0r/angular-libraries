@@ -18,13 +18,8 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.css"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
+            "styles": ["src/styles.css"],
             "scripts": []
           },
           "configurations": {
@@ -71,26 +66,16 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
-            "styles": [
-              "styles.css"
-            ],
+            "styles": ["styles.css"],
             "scripts": [],
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ]
+            "assets": ["src/favicon.ico", "src/assets"]
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "src/tsconfig.app.json",
-              "src/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "tsConfig": ["src/tsconfig.app.json", "src/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**"]
           }
         }
       }
@@ -110,9 +95,7 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "e2e/tsconfig.e2e.json",
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         }
       }
@@ -150,9 +133,7 @@
               "projects/ng-disposable/tsconfig.lib.json",
               "projects/ng-disposable/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         }
       }
@@ -190,9 +171,240 @@
               "projects/ng-inactivity-timer/tsconfig.lib.json",
               "projects/ng-inactivity-timer/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      }
+    },
+    "td-foto": {
+      "root": "projects/td-foto/",
+      "sourceRoot": "projects/td-foto/src",
+      "projectType": "application",
+      "prefix": "app",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/td-foto",
+            "index": "projects/td-foto/src/index.html",
+            "main": "projects/td-foto/src/main.ts",
+            "polyfills": "projects/td-foto/src/polyfills.ts",
+            "tsConfig": "projects/td-foto/tsconfig.app.json",
+            "assets": [
+              "projects/td-foto/src/favicon.ico",
+              "projects/td-foto/src/assets"
+            ],
+            "styles": [
+              {
+                "input":
+                  "node_modules/@angular/material/prebuilt-themes/indigo-pink.css"
+              },
+              "projects/td-foto/src/styles.css"
+            ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "projects/td-foto/src",
+                "projects/td-foto/src/themes"
+              ]
+            },
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/td-foto/src/environments/environment.ts",
+                  "with":
+                    "projects/td-foto/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "td-foto:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "td-foto:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "td-foto:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/td-foto/src/test.ts",
+            "polyfills": "projects/td-foto/src/polyfills.ts",
+            "tsConfig": "projects/td-foto/tsconfig.spec.json",
+            "karmaConfig": "projects/td-foto/karma.conf.js",
+            "styles": [
+              {
+                "input":
+                  "node_modules/@angular/material/prebuilt-themes/indigo-pink.css"
+              },
+              "projects/td-foto/styles.css"
+            ],
+            "scripts": [],
+            "assets": [
+              "projects/td-foto/src/favicon.ico",
+              "projects/td-foto/src/assets"
             ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/td-foto/tsconfig.app.json",
+              "projects/td-foto/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      }
+    },
+    "td-foto-e2e": {
+      "root": "projects/td-foto-e2e/",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/td-foto-e2e/protractor.conf.js",
+            "devServerTarget": "td-foto:serve"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "projects/td-foto-e2e/tsconfig.e2e.json",
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      }
+    },
+    "sometest": {
+      "root": "projects/sometest/",
+      "sourceRoot": "projects/sometest/src",
+      "projectType": "application",
+      "prefix": "app",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/sometest",
+            "index": "projects/sometest/src/index.html",
+            "main": "projects/sometest/src/main.ts",
+            "polyfills": "projects/sometest/src/polyfills.ts",
+            "tsConfig": "projects/sometest/tsconfig.app.json",
+            "assets": [
+              "projects/sometest/src/favicon.ico",
+              "projects/sometest/src/assets"
+            ],
+            "styles": ["projects/sometest/src/styles.css"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace":
+                    "projects/sometest/src/environments/environment.ts",
+                  "with":
+                    "projects/sometest/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "sometest:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "sometest:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "sometest:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/sometest/src/test.ts",
+            "polyfills": "projects/sometest/src/polyfills.ts",
+            "tsConfig": "projects/sometest/tsconfig.spec.json",
+            "karmaConfig": "projects/sometest/karma.conf.js",
+            "styles": ["projects/sometest/styles.css"],
+            "scripts": [],
+            "assets": [
+              "projects/sometest/src/favicon.ico",
+              "projects/sometest/src/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/sometest/tsconfig.app.json",
+              "projects/sometest/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      }
+    },
+    "sometest-e2e": {
+      "root": "projects/sometest-e2e/",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/sometest-e2e/protractor.conf.js",
+            "devServerTarget": "sometest:serve"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "projects/sometest-e2e/tsconfig.e2e.json",
+            "exclude": ["**/node_modules/**"]
           }
         }
       }
