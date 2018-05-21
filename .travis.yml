@@ -1,0 +1,46 @@
+language: node_js
+node_js:
+  - "10.1"
+
+branches:
+  only:
+    - master
+    
+before_install:
+  - npm i -g npm@latest
+      
+script:
+  - ng build $PROJECT -c production
+
+after_success:
+  - echo "$TRAVIS_BUILD_DIR"
+
+before_deploy:
+  - cd dist/$PROJECT
+  
+deploy:
+  provider: npm
+  email: wispster@gmail.com
+  skip_cleanup: true
+  api_key:
+    secure: ##your_secure_key
+  on:
+    branch: master
+    tags: true
+    condition: "$PROJECT = $DEPLOY"
+
+env:
+  global:
+    - DEPLOY=$(echo "$TRAVIS_TAG" | grep "$PROJECT")
+  matrix:
+    - PROJECT=ng-disposable
+    - PROJECT=ng-inactivity-timer
+
+notifications:
+  email:
+    on_failure: change
+    on_success: change
+    
+cache:
+  directories:
+    - "node_modules"
