@@ -442,6 +442,46 @@
           }
         }
       }
+    },
+    "ng-imgur": {
+      "root": "projects/ng-imgur",
+      "sourceRoot": "projects/ng-imgur/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ng-imgur/tsconfig.lib.json",
+            "project": "projects/ng-imgur/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/ng-imgur/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ng-imgur/src/test.ts",
+            "tsConfig": "projects/ng-imgur/tsconfig.spec.json",
+            "karmaConfig": "projects/ng-imgur/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ng-imgur/tsconfig.lib.json",
+              "projects/ng-imgur/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "angular-libraries"

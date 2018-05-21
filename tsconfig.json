@@ -25,6 +25,9 @@
       ],
       "ng-inactivity-timer": [
         "dist/ng-inactivity-timer"
+      ],
+      "ng-imgur": [
+        "dist/ng-imgur"
       ]
     }
   }
