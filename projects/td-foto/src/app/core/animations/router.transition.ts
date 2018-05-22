@@ -12,9 +12,13 @@ export const ANIMATE_ON_ROUTE_ENTER = 'route-enter-staggered';
 
 export const routerTransition = trigger('routerTransition', [
   transition('* <=> *', [
-    query(':enter, :leave', style({ position: 'fixed', width: '100%' }), {
-      optional: true
-    }),
+    query(
+      ':enter, :leave',
+      style({ position: 'fixed', width: 'calc(100% - 32px)' }),
+      {
+        optional: true
+      }
+    ),
     query(':enter .' + ANIMATE_ON_ROUTE_ENTER, style({ opacity: 0 }), {
       optional: true
     }),

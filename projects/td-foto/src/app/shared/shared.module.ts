@@ -16,15 +16,14 @@ import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
-
-import { BigInputComponent } from './big-input/big-input.component';
-import { BigInputActionComponent } from './big-input/big-input-action.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
 
+    // Material
     MatButtonModule,
     MatToolbarModule,
     MatSelectModule,
@@ -38,13 +37,16 @@ import { BigInputActionComponent } from './big-input/big-input-action.component'
     MatListModule,
     MatMenuModule,
     MatIconModule,
-    MatTooltipModule
+    MatTooltipModule,
+
+    // Flex layout
+    FlexLayoutModule
   ],
-  declarations: [BigInputComponent, BigInputActionComponent],
   exports: [
     CommonModule,
     FormsModule,
 
+    // Material
     MatButtonModule,
     MatMenuModule,
     MatTabsModule,
@@ -60,8 +62,8 @@ import { BigInputActionComponent } from './big-input/big-input-action.component'
     MatIconModule,
     MatTooltipModule,
 
-    BigInputComponent,
-    BigInputActionComponent
+    // Flex layout
+    FlexLayoutModule
   ]
 })
 export class SharedModule {}

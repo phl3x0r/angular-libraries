@@ -6,8 +6,7 @@ import { Store } from '@ngrx/store';
 
 import { environment as env } from '../environments/environment';
 
-import { selectorSettings } from './settings';
-import { routerTransition, logout, login } from './core';
+import { routerTransition } from './core';
 import { Subject } from 'rxjs';
 
 @Component({
@@ -31,15 +30,11 @@ export class AppComponent implements OnInit, OnDestroy {
     { link: 'contact', label: 'Kontakt' },
     { link: 'gallery', label: 'Galleri' }
   ];
-  navigationSideMenu = [
-    ...this.navigation,
-    { link: 'settings', label: 'Settings' }
-  ];
+  navigationSideMenu = [...this.navigation];
   isAuthenticated;
 
   constructor(
     public overlayContainer: OverlayContainer,
-    private store: Store<any>,
     private router: Router,
     private titleService: Title
   ) {}
@@ -52,13 +47,5 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
-  }
-
-  onLoginClick() {
-    this.store.dispatch(login());
-  }
-
-  onLogoutClick() {
-    this.store.dispatch(logout());
   }
 }
