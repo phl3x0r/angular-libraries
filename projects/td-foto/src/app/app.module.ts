@@ -8,7 +8,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core';
 import { SharedModule } from './shared';
+import { AlbumService } from '../../../ng-imgur/src/lib';
 
+// export function albumServiceFactory() {
+//   return new AlbumService()
+// }
 @NgModule({
   imports: [
     // angular
@@ -26,6 +30,7 @@ import { SharedModule } from './shared';
     AppRoutingModule
   ],
   declarations: [AppComponent],
+  providers: [AlbumService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

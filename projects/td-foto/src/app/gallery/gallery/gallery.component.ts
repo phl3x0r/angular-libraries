@@ -3,6 +3,8 @@ import { routerTransition } from '../../core';
 import { Subscription, Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { map, tap } from 'rxjs/operators';
+import { AlbumService } from 'projects/ng-imgur/src/lib';
+import { HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'td-examples',
@@ -24,7 +26,10 @@ export class GalleryComponent implements OnInit, OnDestroy {
   private current = -1;
   public direction = 'right';
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private route: ActivatedRoute,
+    private albumService: AlbumService
+  ) {}
   ngOnInit() {
     this.id$ = this.route.params.pipe(
       map(params => {
@@ -37,6 +42,13 @@ export class GalleryComponent implements OnInit, OnDestroy {
         console.log('foo:', this.last, this.current, this.direction);
       })
     );
+
+    this.albumService.defaultHeaders = new HttpHeaders({
+      Authorization: 'Client-ID: 574b1ce7feadab3'
+    });
+    this.albumService
+      .albumByAlbumHashGet('AfmLQZq')
+      .subscribe(x => console.log('result', x));
   }
 
   private getIndex(link: string): number {
