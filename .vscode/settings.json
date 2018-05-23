@@ -1,0 +1,6 @@
+{
+    "telemetry.enableTelemetry": false,
+    "editor.formatOnSave": true,
+    "prettier.singleQuote": true,
+    "html.format.wrapLineLength": 0
+}

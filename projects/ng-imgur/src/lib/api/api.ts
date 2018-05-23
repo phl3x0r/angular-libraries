@@ -1,0 +1,11 @@
+export * from './account.service';
+import { AccountService } from './account.service';
+export * from './album.service';
+import { AlbumService } from './album.service';
+export * from './comment.service';
+import { CommentService } from './comment.service';
+export * from './gallery.service';
+import { GalleryService } from './gallery.service';
+export * from './image.service';
+import { ImageService } from './image.service';
+export const APIS = [AccountService, AlbumService, CommentService, GalleryService, ImageService];
