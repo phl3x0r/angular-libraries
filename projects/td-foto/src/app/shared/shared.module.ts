@@ -17,6 +17,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatGridListModule } from '@angular/material';
 
 @NgModule({
   imports: [
@@ -38,6 +39,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatMenuModule,
     MatIconModule,
     MatTooltipModule,
+    MatGridListModule,
 
     // Flex layout
     FlexLayoutModule
@@ -61,6 +63,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatToolbarModule,
     MatIconModule,
     MatTooltipModule,
+    MatGridListModule,
 
     // Flex layout
     FlexLayoutModule

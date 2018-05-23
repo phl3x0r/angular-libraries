@@ -1,9 +1,18 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { routerTransition } from '../../core';
-import { Subscription, Observable } from 'rxjs';
+import { Subscription, Observable, forkJoin } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
-import { map, tap } from 'rxjs/operators';
-import { AlbumService } from 'projects/ng-imgur/src/lib';
+import { map, tap, switchMap, shareReplay, filter } from 'rxjs/operators';
+import {
+  AlbumService,
+  AlbumResponse,
+  Album,
+  Image,
+  AccountService,
+  AccountAlbumsResponse,
+  AccountAlbum,
+  Configuration
+} from 'projects/ng-imgur/src/lib';
 import { HttpHeaders } from '@angular/common/http';
 
 @Component({
@@ -26,12 +35,41 @@ export class GalleryComponent implements OnInit, OnDestroy {
   private current = -1;
   public direction = 'right';
 
+  public albums$: Observable<Album[]>;
+  public selectedAlbum$: Observable<Album>;
+
   constructor(
     private route: ActivatedRoute,
+    private accountService: AccountService,
     private albumService: AlbumService
   ) {}
   ngOnInit() {
-    this.id$ = this.route.params.pipe(
+    this.albumService.defaultHeaders = new HttpHeaders({
+      Authorization: 'Client-ID 574b1ce7feadab3'
+    });
+    this.accountService.defaultHeaders = new HttpHeaders({
+      Authorization: 'Client-ID 574b1ce7feadab3'
+    });
+
+    this.albums$ = this.accountService
+      .accountAlbumsByUsernameAndPageGet('NiklasHegnelt', '0')
+      .pipe(
+        map(r =>
+          (r as AccountAlbumsResponse).data.sort((a, b) => a.order - b.order)
+        ),
+        switchMap((data: AccountAlbum[]) =>
+          forkJoin(
+            ...data.map(d =>
+              this.albumService
+                .albumByAlbumHashGet(d.id)
+                .pipe(map(x => x as AlbumResponse))
+            )
+          ).pipe(map(rs => (rs as AlbumResponse[]).map(ar => ar.data)))
+        ),
+        shareReplay()
+      );
+
+    this.selectedAlbum$ = this.route.params.pipe(
       map(params => {
         return params['id'];
       }),
@@ -40,15 +78,16 @@ export class GalleryComponent implements OnInit, OnDestroy {
         this.current = this.getIndex(v);
         this.direction = this.last > this.current ? 'left' : 'right';
         console.log('foo:', this.last, this.current, this.direction);
-      })
+      }),
+      switchMap(p =>
+        this.albums$.pipe(
+          tap(x => console.log(x)),
+          map(x => x.find((album: Album) => album.id === p)),
+          tap(x => console.log('found:', x))
+        )
+      )
     );
-
-    this.albumService.defaultHeaders = new HttpHeaders({
-      Authorization: 'Client-ID: 574b1ce7feadab3'
-    });
-    this.albumService
-      .albumByAlbumHashGet('AfmLQZq')
-      .subscribe(x => console.log('result', x));
+    // .subscribe(x => console.log('result', x));
   }
 
   private getIndex(link: string): number {

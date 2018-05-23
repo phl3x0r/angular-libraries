@@ -8,7 +8,7 @@ import { environment as env } from '../environments/environment';
 
 import { routerTransition } from './core';
 import { Subject } from 'rxjs';
-import { ImgurService } from 'projects/ng-imgur/src/public_api';
+import { AccountService } from 'projects/ng-imgur/src/public_api';
 
 @Component({
   selector: 'td-root',
@@ -37,8 +37,7 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(
     public overlayContainer: OverlayContainer,
     private router: Router,
-    private titleService: Title,
-    private imgurService: ImgurService
+    private titleService: Title
   ) {}
 
   ngOnInit(): void {

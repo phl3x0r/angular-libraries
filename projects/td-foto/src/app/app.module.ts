@@ -8,11 +8,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core';
 import { SharedModule } from './shared';
-import { AlbumService } from '../../../ng-imgur/src/lib';
+import {
+  AccountService,
+  AlbumService,
+  Configuration
+} from 'projects/ng-imgur/src/lib';
 
-// export function albumServiceFactory() {
-//   return new AlbumService()
-// }
+export const config = new Configuration({
+  apiKeys: {
+    'Client-ID': '574b1ce7feadab3'
+  },
+  withCredentials: false
+});
 @NgModule({
   imports: [
     // angular
@@ -30,7 +37,11 @@ import { AlbumService } from '../../../ng-imgur/src/lib';
     AppRoutingModule
   ],
   declarations: [AppComponent],
-  providers: [AlbumService],
+  providers: [
+    AccountService,
+    AlbumService,
+    { provide: Configuration, useValue: config }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
