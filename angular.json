@@ -18,8 +18,13 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
-            "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["src/styles.css"],
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/styles.css"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -66,16 +71,26 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
-            "styles": ["styles.css"],
+            "styles": [
+              "styles.css"
+            ],
             "scripts": [],
-            "assets": ["src/favicon.ico", "src/assets"]
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ]
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["src/tsconfig.app.json", "src/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**"]
+            "tsConfig": [
+              "src/tsconfig.app.json",
+              "src/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }
@@ -95,7 +110,9 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "e2e/tsconfig.e2e.json",
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }
@@ -133,7 +150,9 @@
               "projects/ng-disposable/tsconfig.lib.json",
               "projects/ng-disposable/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }
@@ -171,7 +190,9 @@
               "projects/ng-inactivity-timer/tsconfig.lib.json",
               "projects/ng-inactivity-timer/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }
@@ -197,8 +218,7 @@
             ],
             "styles": [
               {
-                "input":
-                  "node_modules/@angular/material/prebuilt-themes/indigo-pink.css"
+                "input": "node_modules/@angular/material/prebuilt-themes/indigo-pink.css"
               },
               "projects/td-foto/src/styles.scss"
             ],
@@ -215,8 +235,7 @@
               "fileReplacements": [
                 {
                   "replace": "projects/td-foto/src/environments/environment.ts",
-                  "with":
-                    "projects/td-foto/src/environments/environment.prod.ts"
+                  "with": "projects/td-foto/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -257,8 +276,7 @@
             "karmaConfig": "projects/td-foto/karma.conf.js",
             "styles": [
               {
-                "input":
-                  "node_modules/@angular/material/prebuilt-themes/indigo-pink.css"
+                "input": "node_modules/@angular/material/prebuilt-themes/indigo-pink.css"
               },
               "projects/td-foto/styles.css"
             ],
@@ -276,7 +294,9 @@
               "projects/td-foto/tsconfig.app.json",
               "projects/td-foto/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }
@@ -296,7 +316,9 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "projects/td-foto-e2e/tsconfig.e2e.json",
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }
@@ -334,11 +356,16 @@
               "projects/ng-imgur/tsconfig.lib.json",
               "projects/ng-imgur/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }
     }
   },
-  "defaultProject": "angular-libraries"
+  "defaultProject": "angular-libraries",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }

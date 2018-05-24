@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { routerTransition } from '../../core';
 import { Subscription, Observable, forkJoin } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { map, tap, switchMap, shareReplay, filter } from 'rxjs/operators';
 import {
   AlbumService,
@@ -14,6 +14,7 @@ import {
   Configuration
 } from 'projects/ng-imgur/src/lib';
 import { HttpHeaders } from '@angular/common/http';
+import { AlbumFacade } from '../../@ngrx/album/album.facade';
 
 @Component({
   selector: 'td-examples',
@@ -34,40 +35,51 @@ export class GalleryComponent implements OnInit, OnDestroy {
   private last = -1;
   private current = -1;
   public direction = 'right';
+  private firstVisit = true;
 
   public albums$: Observable<Album[]>;
   public selectedAlbum$: Observable<Album>;
 
   constructor(
     private route: ActivatedRoute,
-    private accountService: AccountService,
-    private albumService: AlbumService
+    private router: Router,
+    private albumService: AlbumFacade
   ) {}
   ngOnInit() {
-    this.albumService.defaultHeaders = new HttpHeaders({
-      Authorization: 'Client-ID 574b1ce7feadab3'
-    });
-    this.accountService.defaultHeaders = new HttpHeaders({
-      Authorization: 'Client-ID 574b1ce7feadab3'
-    });
+    // this.albumService.defaultHeaders = new HttpHeaders({
+    //   Authorization: 'Client-ID 574b1ce7feadab3'
+    // });
+    // this.accountService.defaultHeaders = new HttpHeaders({
+    //   Authorization: 'Client-ID 574b1ce7feadab3'
+    // });
 
-    this.albums$ = this.accountService
-      .accountAlbumsByUsernameAndPageGet('NiklasHegnelt', '0')
-      .pipe(
-        map(r =>
-          (r as AccountAlbumsResponse).data.sort((a, b) => a.order - b.order)
-        ),
-        switchMap((data: AccountAlbum[]) =>
-          forkJoin(
-            ...data.map(d =>
-              this.albumService
-                .albumByAlbumHashGet(d.id)
-                .pipe(map(x => x as AlbumResponse))
-            )
-          ).pipe(map(rs => (rs as AlbumResponse[]).map(ar => ar.data)))
-        ),
-        shareReplay()
-      );
+    // this.albums$ = this.accountService
+    //   .accountAlbumsByUsernameAndPageGet('NiklasHegnelt', '0')
+    //   .pipe(
+    //     map(r =>
+    //       (r as AccountAlbumsResponse).data.sort((a, b) => a.order - b.order)
+    //     ),
+    //     switchMap((data: AccountAlbum[]) =>
+    //       forkJoin(
+    //         ...data.map(d =>
+    //           this.albumService
+    //             .albumByAlbumHashGet(d.id)
+    //             .pipe(map(x => x as AlbumResponse))
+    //         )
+    //       ).pipe(
+    //         map(rs => (rs as AlbumResponse[]).map(ar => ar.data)),
+    //         tap((x: Album[]) => {
+    //           console.log('first visit?', this.firstVisit);
+    //           if (this.firstVisit) {
+    //             this.firstVisit = false;
+    //             this.router.navigate(['/gallery', x[0].id]);
+    //           }
+    //         })
+    //       )
+    //     ),
+    //     shareReplay()
+    //  );
+    this.albums$ = this.albumService.getAlbums();
 
     this.selectedAlbum$ = this.route.params.pipe(
       map(params => {

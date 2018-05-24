@@ -13,6 +13,12 @@ import {
   AlbumService,
   Configuration
 } from 'projects/ng-imgur/src/lib';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import * as albumReducer from './@ngrx/album/album.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { AlbumEffects } from './@ngrx/album/album.effects';
+import { AlbumFacade } from './@ngrx/album/album.facade';
 
 export const config = new Configuration({
   apiKeys: {
@@ -34,13 +40,24 @@ export const config = new Configuration({
     StaticModule,
 
     // app
-    AppRoutingModule
+    AppRoutingModule,
+    StoreModule.forRoot(
+      {},
+      {
+        metaReducers: []
+      }
+    ),
+    EffectsModule.forRoot([]),
+    StoreModule.forFeature('albumState', albumReducer.reducer),
+    EffectsModule.forFeature([AlbumEffects]),
+    StoreDevtoolsModule.instrument()
   ],
   declarations: [AppComponent],
   providers: [
     AccountService,
     AlbumService,
-    { provide: Configuration, useValue: config }
+    { provide: Configuration, useValue: config },
+    AlbumFacade
   ],
   bootstrap: [AppComponent]
 })
