@@ -1,4 +1,4 @@
-<mat-sidenav-container>
+<mat-sidenav-container class="all-wrap" fullscreen>
 
   <mat-sidenav #sidenav mode="push" class="mat-drawer-content mat-sidenav-content ng-star-inserted">
     <div class="branding">
@@ -13,15 +13,32 @@
 
   <div class="wrapper">
 
-    <mat-toolbar color="primary" fxLayoutAlign="center center">
+    <!-- <header role="banner">
+      <mat-toolbar color="primary">
+        <button type="button" mat-icon-button (click)="sidenav.open()" title="Open sidenav">
+          <mat-icon>menu</mat-icon>
+        </button>
+        Your Toolbar
+      </mat-toolbar>
+    </header>
+    <main class="content">
+      <router-outlet></router-outlet>
+    </main>
+    <footer>
+      Your sticky footer with a variable height.
+    </footer> -->
+
+
+
+
+    <mat-toolbar color="primary" fxLayoutAlign.gt-xs="center center" fxLayoutAlign.lt-sm="space-between center">
       <button mat-icon-button fxHide.gt-xs="true" (click)="sidenav.open()">
         <mat-icon>menu</mat-icon>
       </button>
-      <img [src]="logo" style="width:50px; height:50px;" />
-      <span fxLayout="row" routerLink="" class="branding spacer text-center">&nbsp;Troels Dyhr Fotografi</span>
 
-      <!-- <span routerLink="" class="branding spacer">
-        <img [src]="logo" style="width:50px;" /> Troels Dyhr Foto</span> -->
+      <span fxLayout="row" routerLink="" class="branding spacer text-center" fxLayoutAlign.lt-sm="center center" fxLayoutAlign.gt-xs="start center">
+        <img [src]="logo" style="width:50px; height:50px;" />&nbsp;Troels Dyhr Fotografi</span>
+
 
       <span fxHide.lt-sm="true">
         <button mat-button class="nav-button" *ngFor="let item of navigation" [routerLink]="[item.link]" routerLinkActive="active">
@@ -31,20 +48,14 @@
 
     </mat-toolbar>
 
-    <div class="content" [@routerTransition]="o.isActivated && o.activatedRoute.routeConfig.path">
+    <main class="content" [@routerTransition]="o.isActivated && o.activatedRoute.routeConfig.path">
       <router-outlet #o="outlet"></router-outlet>
-    </div>
+    </main>
 
-    <div class="footer">
-      <div class="row">
-        <div class="col-sm-12 links">
-        </div>
-      </div>
-      <div class="row">
-        <div class="signature mat-subheading-1">
-          &#169; {{year}} - NHIT IVS
-        </div>
-      </div>
+    <div class="footer" fxLayoutAlign="center center">
+      <span class="signature">
+        &#169; {{year}} - NHIT IVS
+      </span>
     </div>
 
   </div>
