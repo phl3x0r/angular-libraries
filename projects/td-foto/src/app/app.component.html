@@ -5,9 +5,33 @@
       <img [src]="logo" style="width:50px; height:50px;" />
     </div>
     <mat-nav-list>
-      <a mat-list-item *ngFor="let item of navigationSideMenu" (click)="sidenav.close()" [routerLink]="[item.link]" routerLinkActive="active">
-        {{item.label}}
-      </a>
+      <ng-container *ngFor="let item of (navigationSideMenu$|async).items">
+        <mat-list-item *ngIf="item.link && !item.children">
+          <a matLine (click)="sidenav.close()" [routerLink]="[item.link]" routerLinkActive="active">{{item.label}}</a>
+        </mat-list-item>
+
+        <ng-container *ngIf="item.children && item.children.length > 0">
+          <mat-list-item>
+            <a matLine (click)="sidenav.close()" [routerLink]="['/gallery', item.children[0].link]" routerLinkActive="active" class="mat-body-1">{{item.label}}</a>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-nav-list>
+            <ng-container *ngFor="let child of item.children">
+              <mat-list-item *ngIf="child.link && !child.children">
+                <a matLine (click)="sidenav.close()" [routerLink]="['/gallery', child.link]" routerLinkActive="active">
+                  {{child.label}}
+                  <mat-icon>photo_library</mat-icon>
+                </a>
+              </mat-list-item>
+            </ng-container>
+          </mat-nav-list>
+        </ng-container>
+        <!-- <button mat-icon-button (click)="showInfo(link)">
+            <mat-icon>info</mat-icon>
+          </button> -->
+
+      </ng-container>
+
     </mat-nav-list>
   </mat-sidenav>
 
@@ -41,7 +65,7 @@
 
 
       <span fxHide.lt-sm="true">
-        <button mat-button class="nav-button" *ngFor="let item of navigation" [routerLink]="[item.link]" routerLinkActive="active">
+        <button mat-button class="nav-button" *ngFor="let item of (navigationSideMenu$|async).items" [routerLink]="[item.link]" routerLinkActive="active">
           {{item.label}}
         </button>
       </span>
@@ -54,6 +78,7 @@
 
     <div class="footer" fxLayoutAlign="center center">
       <span class="signature">
+        <a href="#">asdasdad</a>
         &#169; {{year}} - NHIT IVS
       </span>
     </div>

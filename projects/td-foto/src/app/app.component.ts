@@ -7,8 +7,28 @@ import { Store } from '@ngrx/store';
 import { environment as env } from '../environments/environment';
 
 import { routerTransition } from './core';
-import { Subject } from 'rxjs';
+import { Subject, BehaviorSubject, Observable, of } from 'rxjs';
 import { AccountService } from 'projects/ng-imgur/src/public_api';
+import { AlbumFacade } from './@ngrx/album/album.facade';
+import {
+  take,
+  filter,
+  map,
+  merge,
+  mergeMapTo,
+  startWith,
+  switchMap
+} from 'rxjs/operators';
+
+export interface NavigationMenuItem {
+  label: string;
+  link?: string;
+  children?: NavigationMenuItem[];
+}
+
+export interface NavigationMenu {
+  items: NavigationMenuItem[];
+}
 
 @Component({
   selector: 'td-root',
@@ -26,23 +46,41 @@ export class AppComponent implements OnInit, OnDestroy {
   version = env.versions.app;
   year = new Date().getFullYear();
   logo = require('../assets/logo.png');
-  navigation = [
-    { link: 'about', label: 'Om' },
-    { link: 'contact', label: 'Kontakt' },
-    { link: 'gallery', label: 'Galleri' }
-  ];
-  navigationSideMenu = [...this.navigation];
+  navigation = <NavigationMenu>{
+    items: [
+      { link: 'about', label: 'Om' },
+      { link: 'contact', label: 'Kontakt' }
+    ]
+  };
+  navigationSideMenu$ = new Observable<NavigationMenu>();
   isAuthenticated;
 
   constructor(
     public overlayContainer: OverlayContainer,
     private router: Router,
-    private titleService: Title
+    private titleService: Title,
+    private albumService: AlbumFacade
   ) {}
 
   ngOnInit(): void {
     this.componentCssClass = 'black-theme';
     this.overlayContainer.getContainerElement().classList.add('black-theme');
+    this.navigationSideMenu$ = this.albumService.getAlbums().pipe(
+      switchMap(albums => {
+        const items = [...this.navigation.items];
+        const mapped = albums.map(
+          album => <NavigationMenuItem>{ link: album.id, label: album.title }
+        );
+        items.push({
+          link: 'gallery',
+          label: 'Galleri',
+          children: [...mapped]
+        });
+        console.log(items, mapped, this.navigation.items);
+        return of(<NavigationMenu>{ items: items });
+      }),
+      startWith(this.navigation)
+    );
   }
 
   ngOnDestroy(): void {

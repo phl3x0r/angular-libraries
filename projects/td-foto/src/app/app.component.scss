@@ -54,6 +54,15 @@ mat-sidenav {
   .mat-nav-list {
     padding-top: 0;
   }
+
+  mat-nav-list {
+    mat-list-item {
+      a {
+        display: inline-flex;
+        justify-content: space-between;
+      }
+    }
+  }
 }
 
 .wrapper {
