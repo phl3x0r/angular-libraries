@@ -163,6 +163,7 @@ mat-sidenav {
 main {
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
   > *:not(router-outlet) {
     flex: 1;
     display: block;
