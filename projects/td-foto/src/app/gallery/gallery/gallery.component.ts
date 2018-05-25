@@ -17,20 +17,12 @@ import { HttpHeaders } from '@angular/common/http';
 import { AlbumFacade } from '../../@ngrx/album/album.facade';
 
 @Component({
-  selector: 'td-examples',
+  selector: 'td-gallerys',
   templateUrl: './gallery.component.html',
   styleUrls: ['./gallery.component.scss'],
   animations: [routerTransition]
 })
 export class GalleryComponent implements OnInit, OnDestroy {
-  examples = [
-    { link: 'weddings', label: 'Bryllupper' },
-    { link: 'business', label: 'Business' },
-    { link: 'portraits', label: 'Portrætter' },
-    { link: 'children', label: 'Børn' },
-    { link: 'models', label: 'Model' }
-  ];
-
   public id$: Observable<string>;
   private last = -1;
   public current = 0;
@@ -46,39 +38,6 @@ export class GalleryComponent implements OnInit, OnDestroy {
     private albumService: AlbumFacade
   ) {}
   ngOnInit() {
-    // this.albumService.defaultHeaders = new HttpHeaders({
-    //   Authorization: 'Client-ID 574b1ce7feadab3'
-    // });
-    // this.accountService.defaultHeaders = new HttpHeaders({
-    //   Authorization: 'Client-ID 574b1ce7feadab3'
-    // });
-
-    // this.albums$ = this.accountService
-    //   .accountAlbumsByUsernameAndPageGet('NiklasHegnelt', '0')
-    //   .pipe(
-    //     map(r =>
-    //       (r as AccountAlbumsResponse).data.sort((a, b) => a.order - b.order)
-    //     ),
-    //     switchMap((data: AccountAlbum[]) =>
-    //       forkJoin(
-    //         ...data.map(d =>
-    //           this.albumService
-    //             .albumByAlbumHashGet(d.id)
-    //             .pipe(map(x => x as AlbumResponse))
-    //         )
-    //       ).pipe(
-    //         map(rs => (rs as AlbumResponse[]).map(ar => ar.data)),
-    //         tap((x: Album[]) => {
-    //           console.log('first visit?', this.firstVisit);
-    //           if (this.firstVisit) {
-    //             this.firstVisit = false;
-    //             this.router.navigate(['/gallery', x[0].id]);
-    //           }
-    //         })
-    //       )
-    //     ),
-    //     shareReplay()
-    //  );
     this.albums$ = this.albumService.getAlbums();
 
     this.selectedAlbum$ = this.route.params.pipe(
@@ -91,13 +50,11 @@ export class GalleryComponent implements OnInit, OnDestroy {
             this.last = this.current;
             this.current = this.getIndex(x, p);
             this.direction = this.last > this.current ? 'left' : 'right';
-            // console.log('foo:', this.last, this.current, this.direction);
           }),
           map(x => x.find((album: Album) => album.id === p))
         )
       )
     );
-    // .subscribe(x => console.log('result', x));
   }
 
   private getIndex(albums: Album[], id: string): number {

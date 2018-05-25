@@ -1,10 +1,8 @@
 .picture-frame {
   padding: 5px;
-
+  margin-bottom: 10px;
   img {
-    margin: 1px;
-    max-height: 200px;
-    max-width: 200px;
+    margin: 0px;
   }
 }
 .card-picture {
@@ -21,4 +19,16 @@
 mat-divider {
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+.mat-card-image {
+  width: 100%;
+}
+
+.album-header {
+  height: 200px;
+}
+
+.gallery-row {
+  min-height: 220px;
 }

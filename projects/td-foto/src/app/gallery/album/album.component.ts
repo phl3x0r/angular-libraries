@@ -7,7 +7,7 @@ import {
 } from '../../core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Album } from 'projects/ng-imgur/src/lib';
+import { Album, Image } from 'projects/ng-imgur/src/lib';
 
 @Component({
   selector: 'td-album',
@@ -18,6 +18,7 @@ import { Album } from 'projects/ng-imgur/src/lib';
 export class AlbumComponent implements OnInit, OnDestroy {
   animateOnRouteEnter = ANIMATE_ON_ROUTE_ENTER;
   public f = '../../../assets/01.jpeg';
+  private GALLERY_IMAGE_SIZE = 200;
 
   @Input() album: Album;
   @Input() direction = 'right';
@@ -27,7 +28,20 @@ export class AlbumComponent implements OnInit, OnDestroy {
   ngOnInit() {}
 
   ngOnDestroy(): void {}
-  myfunc($event: Event): void {
-    return;
+
+  getWidth(image: Image): number {
+    const width =
+      image.width < image.height
+        ? this.GALLERY_IMAGE_SIZE / (image.height / image.width)
+        : this.GALLERY_IMAGE_SIZE;
+    return width;
+  }
+
+  getHeight(image: Image): number {
+    const height =
+      image.height < image.width
+        ? this.GALLERY_IMAGE_SIZE / (image.width / image.height)
+        : this.GALLERY_IMAGE_SIZE;
+    return height;
   }
 }
