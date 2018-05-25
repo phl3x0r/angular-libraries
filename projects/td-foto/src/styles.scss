@@ -20,6 +20,7 @@
 @import 'app/app.component.scss-theme';
 // @import 'app/shared/big-input/big-input.component.scss-theme';
 @import 'app/static/about/about.component.scss-theme';
+@import 'app/gallery/album/album.component.scss-theme';
 
 @import '~@angular/material/theming';
 
@@ -27,6 +28,7 @@
   @include td-styles-reset-theme($theme);
   @include td-app-component-theme($theme);
   @include td-about-component-theme($theme);
+  @include td-album-component-theme($theme);
 }
 
 .default-theme {

@@ -33,7 +33,7 @@ export class GalleryComponent implements OnInit, OnDestroy {
 
   public id$: Observable<string>;
   private last = -1;
-  private current = -1;
+  public current = 0;
   public direction = 'right';
   private firstVisit = true;
 
@@ -85,29 +85,27 @@ export class GalleryComponent implements OnInit, OnDestroy {
       map(params => {
         return params['id'];
       }),
-      tap(v => {
-        this.last = this.current;
-        this.current = this.getIndex(v);
-        this.direction = this.last > this.current ? 'left' : 'right';
-        console.log('foo:', this.last, this.current, this.direction);
-      }),
       switchMap(p =>
         this.albums$.pipe(
-          tap(x => console.log(x)),
-          map(x => x.find((album: Album) => album.id === p)),
-          tap(x => console.log('found:', x))
+          tap(x => {
+            this.last = this.current;
+            this.current = this.getIndex(x, p);
+            this.direction = this.last > this.current ? 'left' : 'right';
+            // console.log('foo:', this.last, this.current, this.direction);
+          }),
+          map(x => x.find((album: Album) => album.id === p))
         )
       )
     );
     // .subscribe(x => console.log('result', x));
   }
 
-  private getIndex(link: string): number {
+  private getIndex(albums: Album[], id: string): number {
     let i = -1;
     let end = i;
-    this.examples.forEach(x => {
+    albums.forEach(x => {
       i++;
-      if (x.link === link) {
+      if (x.id === id) {
         end = i;
       }
     });

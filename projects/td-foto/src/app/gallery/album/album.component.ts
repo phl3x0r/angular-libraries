@@ -21,6 +21,7 @@ export class AlbumComponent implements OnInit, OnDestroy {
 
   @Input() album: Album;
   @Input() direction = 'right';
+  @Input() selectedIndex = 0;
 
   constructor(private route: ActivatedRoute) {}
   ngOnInit() {}

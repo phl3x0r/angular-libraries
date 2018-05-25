@@ -1,6 +1,11 @@
-img {
-  margin-bottom: 10px;
-  max-height: 200px;
+.picture-frame {
+  padding: 5px;
+
+  img {
+    margin: 1px;
+    max-height: 200px;
+    max-width: 200px;
+  }
 }
 .card-picture {
   width: 23%;
@@ -12,4 +17,8 @@ img {
 }
 .search-form {
   width: 90%;
+}
+mat-divide {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }

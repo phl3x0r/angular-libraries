@@ -1,10 +1,11 @@
-<div *ngIf="album" [@slide]="direction">
-  <h2>{{ album.title }}</h2>
+<div *ngIf="album" [@slide]="selectedIndex">
+  <h2 class="mat-headline">{{ album.title }}</h2>
   <h6>{{ direction }}</h6>
+  <p class="mat-body-1" *ngIf="album.description">{{album.description}}</p>
   <mat-divider></mat-divider>
-  <p *ngIf="album.description">{{album.description}}</p>
-
   <div fxLayout="row" fxLayout.xs="column" fxLayout="wrap row" fxLayoutGap="10px" fxLayoutAlign="left center">
-    <img *ngFor="let image of album.images" [src]="image.link">
+    <mat-card class="picture-frame" *ngFor="let image of album.images">
+      <img mat-card-image [src]="image.link">
+    </mat-card>
   </div>
 </div>

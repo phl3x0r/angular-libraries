@@ -1,0 +1,17 @@
+@import '~@angular/material/theming';
+
+// Create a config with the default typography levels.
+$config: mat-typography-config();
+
+@mixin td-album-component-theme($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+
+  .picture-frame {
+    background-color: map-get($primary, 'default-contrast');
+    box-shadow: 5px 5px 5px black !important;
+
+    img {
+    }
+  }
+}
