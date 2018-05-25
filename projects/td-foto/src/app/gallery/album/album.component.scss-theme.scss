@@ -9,6 +9,5 @@ $config: mat-typography-config();
 
   .picture-frame {
     background-color: rgba(map-get($primary, 'default-contrast'), 0.75);
-    box-shadow: 5px 5px 5px black !important;
   }
 }

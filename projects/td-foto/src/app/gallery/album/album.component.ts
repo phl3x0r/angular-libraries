@@ -8,6 +8,8 @@ import {
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Album, Image } from 'projects/ng-imgur/src/lib';
+import { MatDialog } from '@angular/material';
+import { ImageDialogComponent } from './image.dialog';
 
 @Component({
   selector: 'td-album',
@@ -17,14 +19,11 @@ import { Album, Image } from 'projects/ng-imgur/src/lib';
 })
 export class AlbumComponent implements OnInit, OnDestroy {
   animateOnRouteEnter = ANIMATE_ON_ROUTE_ENTER;
-  public f = '../../../assets/01.jpeg';
   private GALLERY_IMAGE_SIZE = 200;
 
   @Input() album: Album;
-  @Input() direction = 'right';
-  @Input() selectedIndex = 0;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(public dialog: MatDialog) {}
   ngOnInit() {}
 
   ngOnDestroy(): void {}
@@ -43,5 +42,22 @@ export class AlbumComponent implements OnInit, OnDestroy {
         ? this.GALLERY_IMAGE_SIZE / (image.width / image.height)
         : this.GALLERY_IMAGE_SIZE;
     return height;
+  }
+
+  openDialog(imageUrl: string): void {
+    const dialogRef = this.dialog.open(ImageDialogComponent, {
+      maxHeight: window.screen.height + 'px',
+      maxWidth: window.screen.width + 'px',
+      panelClass: 'dialog-panel',
+      data: {
+        img: imageUrl,
+        maxHeight: window.screen.height - 58 + 'px',
+        maxWidth: window.screen.width - 58 + 'px'
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 }

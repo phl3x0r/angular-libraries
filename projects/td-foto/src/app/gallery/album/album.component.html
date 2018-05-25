@@ -5,8 +5,8 @@
     <p class="mat-body-1" *ngIf="album.description">{{album.description}}</p>
   </div>
   <mat-divider></mat-divider>
-  <div class="gallery-row" fxLayout="row" fxLayout="wrap row" fxLayoutGap="10px" fxLayoutAlign="left center">
-    <mat-card class="picture-frame" *ngFor="let image of album.images" [style.width.px]="getWidth(image)" [style.height.px]="getHeight(image)">
+  <div class="gallery-row" fxLayout="row" fxLayout="wrap row" fxLayoutGap="10px" fxLayoutAlign="left center" fxLayoutAlign.xs="center center">
+    <mat-card class="picture-frame" *ngFor="let image of album.images" [style.width.px]="getWidth(image)" [style.height.px]="getHeight(image)" (click)="openDialog(image.link)">
       <img mat-card-image [src]="image.link">
     </mat-card>
   </div>

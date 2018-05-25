@@ -45,3 +45,11 @@
   @include angular-material-theme($td-black-theme);
   @include custom-components-theme($td-black-theme);
 }
+
+.dialog-panel {
+  .mat-dialog-container {
+    padding: 0;
+    margin: 24px;
+      box-shadow: 10px 10px 10px black !important;    
+  }
+}

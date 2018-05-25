@@ -1,11 +1,5 @@
-<nav mat-tab-nav-bar>
-  <div class="navbar">
-    <a mat-tab-link *ngFor="let e of (albums$|async)" [routerLink]="['/gallery', e.id]" routerLinkActive #rla="routerLinkActive" [active]="rla.isActive">
-      {{e.title}}
-    </a>
-  </div>
-</nav>
-
-<div [@routerTransition]>
-  <td-album [album]="selectedAlbum$|async" [direction]="direction" [selectedIndex]="current"></td-album>
-</div>
+<mat-tab-group (selectedTabChange)="onTabChange($event)">
+  <mat-tab *ngFor="let album of (albums$|async)" [label]="album.title">
+    <td-album [album]="album"></td-album>
+  </mat-tab>
+</mat-tab-group>

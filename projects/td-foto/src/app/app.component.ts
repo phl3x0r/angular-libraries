@@ -76,7 +76,6 @@ export class AppComponent implements OnInit, OnDestroy {
           label: 'Galleri',
           children: [...mapped]
         });
-        console.log(items, mapped, this.navigation.items);
         return of(<NavigationMenu>{ items: items });
       }),
       startWith(this.navigation)

@@ -19,6 +19,8 @@ import * as albumReducer from './@ngrx/album/album.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { AlbumEffects } from './@ngrx/album/album.effects';
 import { AlbumFacade } from './@ngrx/album/album.facade';
+import { CustomReuseStrategy } from './routing/route.reuse.strategy';
+import { RouteReuseStrategy } from '@angular/router';
 
 export const config = new Configuration({
   apiKeys: {
