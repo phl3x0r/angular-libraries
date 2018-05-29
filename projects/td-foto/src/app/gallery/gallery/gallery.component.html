@@ -1,4 +1,4 @@
-<mat-tab-group (selectedTabChange)="onTabChange($event)">
+<mat-tab-group (selectedTabChange)="onTabChange($event)" [selectedIndex]="selectedId$|async">
   <mat-tab *ngFor="let album of (albums$|async)" [label]="album.title">
     <td-album [album]="album"></td-album>
   </mat-tab>
