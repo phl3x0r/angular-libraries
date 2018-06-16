@@ -34,7 +34,7 @@ export class AlbumEffects {
         Authorization: 'Client-ID 574b1ce7feadab3'
       });
       return this.accountService
-        .accountAlbumsByUsernameAndPageGet('NiklasHegnelt', '0')
+        .accountAlbumsByUsernameAndPageGet('tdfoto', '0')
         .pipe(
           map(r =>
             (r as AccountAlbumsResponse).data.sort((a, b) => a.order - b.order)
