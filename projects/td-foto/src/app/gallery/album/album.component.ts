@@ -45,19 +45,20 @@ export class AlbumComponent implements OnInit, OnDestroy {
   }
 
   openDialog(imageUrl: string): void {
+    console.log(window.innerWidth + 'px', 'x', window.innerHeight + 'px');
     const dialogRef = this.dialog.open(ImageDialogComponent, {
-      maxHeight: window.screen.height + 'px',
-      maxWidth: window.screen.width + 'px',
+      maxHeight: window.innerHeight + 'px',
+      maxWidth: window.innerWidth + 'px',
       panelClass: 'dialog-panel',
       data: {
         img: imageUrl,
-        maxHeight: window.screen.height - 58 + 'px',
-        maxWidth: window.screen.width - 58 + 'px'
+        maxHeight: window.innerHeight - 58 + 'px',
+        maxWidth: window.innerWidth - 58 + 'px'
       }
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
+    // dialogRef.afterClosed().subscribe(result => {
+    //   console.log('The dialog was closed');
+    // });
   }
 }
