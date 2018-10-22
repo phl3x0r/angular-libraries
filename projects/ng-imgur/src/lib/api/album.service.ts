@@ -140,8 +140,7 @@ export class AlbumService {
     }
 
     if (Deletehashes !== undefined) {
-      formParams =
-        formParams.append('Deletehashes[]', <any>Deletehashes) || formParams;
+      formParams.append('Deletehashes[]', <any>Deletehashes);
     }
 
     return this.httpClient.post<any>(
@@ -372,7 +371,7 @@ export class AlbumService {
     }
 
     if (ids !== undefined) {
-      formParams = formParams.append('ids[]', <any>ids) || formParams;
+      formParams.append('ids[]', <any>ids);
     }
 
     return this.httpClient.post<any>(
@@ -497,18 +496,16 @@ export class AlbumService {
     }
 
     if (Deletehashes !== undefined) {
-      formParams =
-        formParams.append('Deletehashes', <any>Deletehashes) || formParams;
+      formParams.append('Deletehashes', <any>Deletehashes);
     }
     if (title !== undefined) {
-      formParams = formParams.append('title', <any>title) || formParams;
+      formParams.append('title', <any>title);
     }
     if (description !== undefined) {
-      formParams =
-        formParams.append('description', <any>description) || formParams;
+      formParams.append('description', <any>description);
     }
     if (cover !== undefined) {
-      formParams = formParams.append('cover', <any>cover) || formParams;
+      formParams.append('cover', <any>cover);
     }
 
     return this.httpClient.put<any>(
@@ -841,17 +838,16 @@ export class AlbumService {
     }
 
     if (ids !== undefined) {
-      formParams = formParams.append('ids[]', <any>ids) || formParams;
+      formParams.append('ids[]', <any>ids);
     }
     if (title !== undefined) {
-      formParams = formParams.append('title', <any>title) || formParams;
+      formParams.append('title', <any>title);
     }
     if (description !== undefined) {
-      formParams =
-        formParams.append('description', <any>description) || formParams;
+      formParams.append('description', <any>description);
     }
     if (cover !== undefined) {
-      formParams = formParams.append('cover', <any>cover) || formParams;
+      formParams.append('cover', <any>cover);
     }
 
     return this.httpClient.post<any>(
@@ -946,7 +942,7 @@ export class AlbumService {
     }
 
     if (ids !== undefined) {
-      formParams = formParams.append('ids[]', <any>ids) || formParams;
+      formParams.append('ids[]', <any>ids);
     }
 
     return this.httpClient.post<any>(

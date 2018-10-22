@@ -288,11 +288,10 @@ export class ImageService {
     }
 
     if (title !== undefined) {
-      formParams = formParams.append('title', <any>title) || formParams;
+      formParams.append('title', <any>title);
     }
     if (description !== undefined) {
-      formParams =
-        formParams.append('description', <any>description) || formParams;
+      formParams.append('description', <any>description);
     }
 
     return this.httpClient.post<any>(
@@ -447,7 +446,7 @@ export class ImageService {
     }
 
     if (image !== undefined) {
-      formParams = formParams.append('image', <any>image) || formParams;
+      formParams.append('image', <any>image);
     }
 
     return this.httpClient.post<SampleAnonymousUpload>(

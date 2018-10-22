@@ -187,19 +187,19 @@ export class GalleryService {
     }
 
     if (title !== undefined) {
-      formParams = formParams.append('title', <any>title) || formParams;
+      formParams.append('title', <any>title);
     }
     if (topic !== undefined) {
-      formParams = formParams.append('topic', <any>topic) || formParams;
+      formParams.append('topic', <any>topic);
     }
     if (terms !== undefined) {
-      formParams = formParams.append('terms', <any>terms) || formParams;
+      formParams.append('terms', <any>terms);
     }
     if (mature !== undefined) {
-      formParams = formParams.append('mature', <any>mature) || formParams;
+      formParams.append('mature', <any>mature);
     }
     if (tags !== undefined) {
-      formParams = formParams.append('tags', <any>tags) || formParams;
+      formParams.append('tags', <any>tags);
     }
 
     return this.httpClient.post<any>(
@@ -511,7 +511,7 @@ export class GalleryService {
     }
 
     if (comment !== undefined) {
-      formParams = formParams.append('comment', <any>comment) || formParams;
+      formParams.append('comment', <any>comment);
     }
 
     return this.httpClient.post<any>(
@@ -786,16 +786,16 @@ export class GalleryService {
     }
 
     if (title !== undefined) {
-      formParams = formParams.append('title', <any>title) || formParams;
+      formParams.append('title', <any>title);
     }
     if (topic !== undefined) {
-      formParams = formParams.append('topic', <any>topic) || formParams;
+      formParams.append('topic', <any>topic);
     }
     if (terms !== undefined) {
-      formParams = formParams.append('terms', <any>terms) || formParams;
+      formParams.append('terms', <any>terms);
     }
     if (tags !== undefined) {
-      formParams = formParams.append('tags', <any>tags) || formParams;
+      formParams.append('tags', <any>tags);
     }
 
     return this.httpClient.post<any>(
@@ -892,7 +892,7 @@ export class GalleryService {
     }
 
     if (reason !== undefined) {
-      formParams = formParams.append('reason', <any>reason) || formParams;
+      formParams.append('reason', <any>reason);
     }
 
     return this.httpClient.post<any>(
@@ -1527,10 +1527,10 @@ export class GalleryService {
     }
 
     if (id !== undefined) {
-      formParams = formParams.append('id', <any>id) || formParams;
+      formParams.append('id', <any>id);
     }
     if (tags !== undefined) {
-      formParams = formParams.append('tags', <any>tags) || formParams;
+      formParams.append('tags', <any>tags);
     }
 
     return this.httpClient.post<any>(

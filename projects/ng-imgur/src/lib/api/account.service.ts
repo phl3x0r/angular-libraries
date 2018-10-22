@@ -2418,19 +2418,16 @@ export class AccountService {
     }
 
     if (refreshToken !== undefined) {
-      formParams =
-        formParams.append('refresh_token', <any>refreshToken) || formParams;
+        formParams.append('refresh_token', <any>refreshToken);
     }
     if (clientId !== undefined) {
-      formParams = formParams.append('client_id', <any>clientId) || formParams;
+      formParams.append('client_id', <any>clientId);
     }
     if (clientSecret !== undefined) {
-      formParams =
-        formParams.append('client_secret', <any>clientSecret) || formParams;
+        formParams.append('client_secret', <any>clientSecret);
     }
     if (grantType !== undefined) {
-      formParams =
-        formParams.append('grant_type', <any>grantType) || formParams;
+        formParams.append('grant_type', <any>grantType);
     }
 
     return this.httpClient.post<any>(

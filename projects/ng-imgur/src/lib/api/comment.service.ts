@@ -286,10 +286,10 @@ export class CommentService {
     }
 
     if (imageId !== undefined) {
-      formParams = formParams.append('image_id', <any>imageId) || formParams;
+      formParams.append('image_id', <any>imageId);
     }
     if (comment !== undefined) {
-      formParams = formParams.append('comment', <any>comment) || formParams;
+      formParams.append('comment', <any>comment);
     }
 
     return this.httpClient.post<any>(
@@ -384,10 +384,10 @@ export class CommentService {
     }
 
     if (imageId !== undefined) {
-      formParams = formParams.append('image_id', <any>imageId) || formParams;
+      formParams.append('image_id', <any>imageId);
     }
     if (comment !== undefined) {
-      formParams = formParams.append('comment', <any>comment) || formParams;
+      formParams.append('comment', <any>comment);
     }
 
     return this.httpClient.post<any>(
@@ -551,7 +551,7 @@ export class CommentService {
     }
 
     if (reason !== undefined) {
-      formParams = formParams.append('reason', <any>reason) || formParams;
+      formParams.append('reason', <any>reason);
     }
 
     return this.httpClient.post<any>(
