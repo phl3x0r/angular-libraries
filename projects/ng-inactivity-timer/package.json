@@ -1,9 +1,9 @@
 {
   "name": "ng-inactivity-timer",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/phl3x0r/angular-libraries"
+    "url": "https://github.com/phl3x0r/angular-libraries/tree/master/projects/ng-inactivity-timer"
   },
   "bugs": {
     "email": "wispster@gmail.com",
@@ -15,10 +15,16 @@
     "url": "https://github.com/phl3x0r"
   },
   "description": "A service for monitoring and reacting to user inactivity",
-  "keywords": ["angular", "inactivity", "timer", "inactivity-timer", "timeout"],
+  "keywords": [
+    "angular",
+    "inactivity",
+    "timer",
+    "inactivity-timer",
+    "timeout"
+  ],
   "license": "MIT",
   "peerDependencies": {
-    "@angular/core": "^6.0.0-rc.0 || ^6.0.0",
+    "@angular/core": "^7.0.0-rc.0 || ^7.0.0",
     "rxjs": "^6.0.0"
   }
 }
