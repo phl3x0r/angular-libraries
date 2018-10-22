@@ -1,9 +1,9 @@
 {
   "name": "ng-disposable",
-  "version": "0.6.1",
+  "version": "0.7.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/phl3x0r/angular-libraries"
+    "url": "https://github.com/phl3x0r/angular-libraries/tree/master/projects/ng-disposable"
   },
   "bugs": {
     "email": "wispster@gmail.com",
@@ -15,10 +15,14 @@
     "url": "https://github.com/phl3x0r"
   },
   "description": "A library for setting up and disposing services",
-  "keywords": ["angular", "dispose", "disposable"],
+  "keywords": [
+    "angular",
+    "dispose",
+    "disposable"
+  ],
   "license": "MIT",
   "peerDependencies": {
-    "@angular/common": "^6.0.0-rc.0 || ^6.0.0",
-    "@angular/core": "^6.0.0-rc.0 || ^6.0.0"
+    "@angular/common": "^7.0.0-rc.0 || ^7.0.0",
+    "@angular/core": "^7.0.0-rc.0 || ^7.0.0"
   }
 }

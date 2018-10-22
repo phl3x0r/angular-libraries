@@ -2,7 +2,7 @@
 
 ## Description
 
-ng-inactivity-timer provides a service that keeps track of user activity based on cusom activity monitors.
+ng-inactivity-timer provides a service that keeps track of user activity based on custom activity monitors.
 
 ## Installation
 
