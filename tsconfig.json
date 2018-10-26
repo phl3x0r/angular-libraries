@@ -28,6 +28,12 @@
       ],
       "ng-imgur": [
         "dist/ng-imgur"
+      ],
+      "rx-refresh": [
+        "dist/rx-refresh"
+      ],
+      "rx-refresh/*": [
+        "dist/rx-refresh/*"
       ]
     }
   }
