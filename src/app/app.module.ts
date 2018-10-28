@@ -8,10 +8,11 @@ import {
   ACTIVITY_MONITOR
 } from 'projects/ng-inactivity-timer/src/public_api';
 import { ActivityMonitorService } from './activity-monitor.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule],
+  imports: [BrowserModule, HttpClientModule],
   providers: [
     {
       provide: INACTIVITY_CONFIG,
