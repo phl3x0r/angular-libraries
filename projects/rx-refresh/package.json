@@ -1,6 +1,29 @@
 {
   "name": "rx-refresh",
-  "version": "0.0.1",
+  "version": "6.3.3",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/phl3x0r/angular-libraries/tree/master/projects/rx-refresh"
+  },
+  "bugs": {
+    "email": "wispster@gmail.com",
+    "url": "https://github.com/phl3x0r/angular-libraries/issues"
+  },
+  "author": {
+    "name": "Niklas Hegnelt",
+    "email": "wispster@gmail.com",
+    "url": "https://github.com/phl3x0r"
+  },
+  "description": "rxjs operators for automatic refresh / polling",
+  "keywords": [
+    "rxjs",
+    "operator",
+    "operators",
+    "refresh",
+    "polling",
+    "poll"
+  ],
+  "license": "MIT",
   "peerDependencies": {
     "rxjs": ">= 5.5.0"
   }
