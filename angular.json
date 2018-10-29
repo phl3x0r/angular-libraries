@@ -104,7 +104,7 @@
       "root": "projects/ng-disposable",
       "sourceRoot": "projects/ng-disposable/src",
       "projectType": "library",
-      "prefix": "lib",
+      "prefix": "ng-disposable",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
@@ -142,7 +142,7 @@
       "root": "projects/ng-inactivity-timer",
       "sourceRoot": "projects/ng-inactivity-timer/src",
       "projectType": "library",
-      "prefix": "lib",
+      "prefix": "ng-inactivity-timer",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
@@ -303,7 +303,7 @@
       "root": "projects/ng-imgur",
       "sourceRoot": "projects/ng-imgur/src",
       "projectType": "library",
-      "prefix": "lib",
+      "prefix": "ng-imgur",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
@@ -348,6 +348,11 @@
           "options": {
             "tsConfig": "projects/rx-refresh/tsconfig.lib.json",
             "project": "projects/rx-refresh/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/rx-refresh/ng-package.prod.json"
+            }
           }
         },
         "test": {

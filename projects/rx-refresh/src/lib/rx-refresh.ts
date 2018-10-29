@@ -7,7 +7,8 @@ import {
   bufferTime,
   filter,
   share,
-  mergeMapTo
+  mergeMapTo,
+  scan
 } from 'rxjs/operators';
 
 /**
@@ -31,7 +32,7 @@ export const switchRefresh = <T>(
  * Will stop merging if monitor stops and start again once monitor resumes
  * @param refreshTime refresh time in miliseconds
  * @param monitor controls refreshing state, defaults to {@link activityMonitor$}
- * @return An Observable that switches into the source Observable at an interval given by `refreshTime`
+ * @return An Observable that merges into the source Observable at an interval given by `refreshTime`
  * controlled by `monitor`
  * @method mergeRefresh
  * @owner Observable
@@ -41,6 +42,25 @@ export const mergeRefresh = <T>(
   monitor: Observable<any> = activityMonitor$
 ): OperatorFunction<T, T> => source$ =>
   refreshFn(monitor, refreshTime).pipe(mergeMapTo(source$));
+
+/**
+ * Get source Observable which emits periodically as long as the monitor emits
+ * Will stop emitting if monitor stops and start again once monitor resumes
+ * @param refreshTime refresh time in miliseconds
+ * @param monitor controls refreshing state, defaults to {@link activityMonitor$}
+ * @return An Observable that emits the total number of refreshes
+ * @method refresher
+ * @owner Observable
+ */
+export const refresher = (
+  refreshTime: number,
+  monitor: Observable<any> = activityMonitor$
+) => {
+  return refreshFn(monitor, refreshTime).pipe(
+    mapTo(1),
+    scan((acc, curr) => acc + curr, 0)
+  );
+};
 
 function refreshFn(monitor: Observable<any>, refreshTime: number) {
   const inactive$ = monitor.pipe(
