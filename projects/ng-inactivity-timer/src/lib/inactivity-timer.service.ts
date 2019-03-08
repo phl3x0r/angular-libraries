@@ -31,21 +31,23 @@ export class InactivityTimerService {
   private artificialActivity$ = new Subject<void>();
 
   constructor(
-    @Inject(INACTIVITY_CONFIG) private config: InactivityConfig,
+    @Optional()
+    @Inject(INACTIVITY_CONFIG)
+    private config: InactivityConfig,
     @Optional()
     @Inject(ACTIVITY_MONITOR)
     private monitor: ActivityMonitor
   ) {
     // Merge all monitors together, and activate them via register()
     this.timeout$ = this.monitor$.pipe(
-      filter(x => !!x),
+      filter(x => !!x && !!this.config),
       switchMap(m => {
         return merge(this.monitor.getMonitor(), this.artificialActivity$).pipe(
           throttle(() => observableInterval(500)), // Throttle - to stop spamming
           startWith(undefined), // Trigger observable immediately
           map(() => {
             const d = new Date();
-            d.setSeconds(d.getSeconds() + config.inactivityTime);
+            d.setSeconds(d.getSeconds() + this.config.inactivityTime);
             return d;
           }),
           takeUntil(this.monitor$.pipe(filter(x => !x)))
@@ -103,6 +105,13 @@ export class InactivityTimerService {
    */
   public activate(): void {
     this.artificialActivity$.next(undefined);
+  }
+
+  /**
+   * Use to override config ad hoc
+   */
+  public setConfig(config: InactivityConfig): void {
+    this.config = config;
   }
 }
 

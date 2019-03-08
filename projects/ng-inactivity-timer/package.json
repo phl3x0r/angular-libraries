@@ -1,6 +1,6 @@
 {
   "name": "ng-inactivity-timer",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/phl3x0r/angular-libraries/tree/master/projects/ng-inactivity-timer"
