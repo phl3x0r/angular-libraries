@@ -23,6 +23,8 @@
     "polling",
     "poll"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "peerDependencies": {
+    "rxjs": "^6.5.0"
+  }
 }
-
