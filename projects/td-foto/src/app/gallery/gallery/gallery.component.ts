@@ -16,7 +16,7 @@ import {
 } from 'projects/ng-imgur/src/lib';
 import { HttpHeaders } from '@angular/common/http';
 import { AlbumFacade } from '../../@ngrx/album/album.facade';
-import { MatTabChangeEvent } from '@angular/material';
+import { MatTabChangeEvent } from '@angular/material/tabs';
 
 @Component({
   selector: 'td-gallerys',

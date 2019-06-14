@@ -8,7 +8,7 @@ import {
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Album, Image } from 'projects/ng-imgur/src/lib';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { ImageDialogComponent } from './image.dialog';
 
 @Component({
