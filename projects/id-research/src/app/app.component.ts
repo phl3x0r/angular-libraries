@@ -8,5 +8,6 @@ import { routerTransition } from './animations/router.transition';
   animations: [routerTransition]
 })
 export class AppComponent {
+  year = new Date().getFullYear();
   title = 'id-research';
 }
