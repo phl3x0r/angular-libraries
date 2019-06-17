@@ -1,0 +1,17 @@
+@import '../styles-variables';
+
+.example-icon {
+  padding: 0 14px;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  flex: 1 1 auto;
+  justify-content: space-between;
+}

@@ -1,0 +1,37 @@
+<div class="wrapper">
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <span>Third Line</span>
+      <span class="example-spacer"></span>
+      <a [routerLink]="['/contact']">
+        <mat-icon
+          class="example-icon"
+          aria-hidden="false"
+          aria-label="Example heart icon"
+          >favorite</mat-icon
+        >
+      </a>
+      <a [routerLink]="['/about']">
+        <mat-icon
+          class="example-icon"
+          aria-hidden="false"
+          aria-label="Example delete icon"
+          >delete</mat-icon
+        ></a
+      >
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <!--The content below is only a placeholder and can be replaced.-->
+  <main
+    class="content"
+    [@routerTransition]="o.isActivated && o.activatedRoute.routeConfig.path"
+  >
+    <router-outlet #o="outlet"></router-outlet>
+  </main>
+  <div class="footer" fxLayoutAlign="center center">
+    <span class="signature">
+      <a href="#">asdasdad</a>
+      &#169; {{ year }} - NHIT IVS
+    </span>
+  </div>
+</div>
